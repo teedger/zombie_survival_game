@@ -1,0 +1,68 @@
+{
+  "id": 3,
+  "name": "Scattered Ruins",
+  "alleyWidth": 65,
+  "desc": "Irregular diagonal skips create pockets and ambush spots.",
+  "oval": {
+    "cx": 750,
+    "cy": 420,
+    "rx": 108,
+    "ry": 80,
+    "t": 28
+  },
+  "buildings": [
+    {
+      "x": 89,
+      "y": 89,
+      "w": 197,
+      "h": 81
+    },
+    {
+      "x": 351,
+      "y": 89,
+      "w": 197,
+      "h": 81
+    },
+    {
+      "x": 351,
+      "y": 235,
+      "w": 197,
+      "h": 81
+    },
+    {
+      "x": 613,
+      "y": 235,
+      "w": 197,
+      "h": 81
+    },
+    {
+      "x": 89,
+      "y": 381,
+      "w": 197,
+      "h": 81
+    },
+    {
+      "x": 351,
+      "y": 381,
+      "w": 197,
+      "h": 81
+    },
+    {
+      "x": 89,
+      "y": 527,
+      "w": 197,
+      "h": 81
+    },
+    {
+      "x": 613,
+      "y": 527,
+      "w": 197,
+      "h": 81
+    }
+  ],
+  "meta": {
+    "buildingCount": 8,
+    "gridSize": "900x700",
+    "wallThickness": 24
+  }
+}

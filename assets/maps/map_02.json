@@ -1,0 +1,56 @@
+{
+  "id": 2,
+  "name": "Boulevard",
+  "alleyWidth": 72,
+  "desc": "Two rows of buildings with staggered gaps. A wide promenade runs diagonally.",
+  "oval": {
+    "cx": 352,
+    "cy": 205,
+    "rx": 108,
+    "ry": 80,
+    "t": 28
+  },
+  "buildings": [
+    {
+      "x": 96,
+      "y": 96,
+      "w": 123,
+      "h": 218
+    },
+    {
+      "x": 486,
+      "y": 96,
+      "w": 123,
+      "h": 218
+    },
+    {
+      "x": 681,
+      "y": 96,
+      "w": 123,
+      "h": 218
+    },
+    {
+      "x": 96,
+      "y": 386,
+      "w": 123,
+      "h": 218
+    },
+    {
+      "x": 291,
+      "y": 386,
+      "w": 123,
+      "h": 218
+    },
+    {
+      "x": 681,
+      "y": 386,
+      "w": 123,
+      "h": 218
+    }
+  ],
+  "meta": {
+    "buildingCount": 6,
+    "gridSize": "900x700",
+    "wallThickness": 24
+  }
+}

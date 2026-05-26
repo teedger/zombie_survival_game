@@ -1,0 +1,56 @@
+{
+  "id": 5,
+  "name": "Industrial Park",
+  "alleyWidth": 52,
+  "desc": "Long warehouse slabs, left clearing holds the arena.",
+  "oval": {
+    "cx": 200,
+    "cy": 338,
+    "rx": 110,
+    "ry": 82,
+    "t": 28
+  },
+  "buildings": [
+    {
+      "x": 76,
+      "y": 76,
+      "w": 348,
+      "h": 98
+    },
+    {
+      "x": 476,
+      "y": 76,
+      "w": 348,
+      "h": 98
+    },
+    {
+      "x": 476,
+      "y": 226,
+      "w": 348,
+      "h": 98
+    },
+    {
+      "x": 476,
+      "y": 376,
+      "w": 348,
+      "h": 98
+    },
+    {
+      "x": 76,
+      "y": 526,
+      "w": 348,
+      "h": 98
+    },
+    {
+      "x": 476,
+      "y": 526,
+      "w": 348,
+      "h": 98
+    }
+  ],
+  "meta": {
+    "buildingCount": 6,
+    "gridSize": "900x700",
+    "wallThickness": 24
+  }
+}
