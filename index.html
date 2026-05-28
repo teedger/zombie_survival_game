@@ -418,7 +418,9 @@ canvas.addEventListener('click', e => {
   if(mx>=CW-70&&mx<=CW-6&&my>=4&&my<=28){settingsOpen=!settingsOpen;return;}
   // Settings overlay intercepts all other clicks
   if(settingsOpen){
-    if(mx>=CW/2-75&&mx<=CW/2+75&&my>=580&&my<=606){resetToMenu();}
+    if(gameState!=='menu'&&mx>=CW/2-165&&mx<=CW/2-15&&my>=580&&my<=606){settingsOpen=false;return;}
+    if(gameState!=='menu'&&mx>=CW/2+15&&mx<=CW/2+165&&my>=580&&my<=606){resetToMenu();return;}
+    if(gameState==='menu'&&mx>=CW/2-75&&mx<=CW/2+75&&my>=580&&my<=606){resetToMenu();return;}
     if(mx>=CW/2-75&&mx<=CW/2+75&&my>=540&&my<=566){toggleMute();}
     return;
   }
@@ -1124,24 +1126,20 @@ function drawSettingsOverlay(){
 
   // Title bar
   ctx.fillStyle='#1a2810';rrect(px,py,pw,34,8);ctx.fill();
-  ctx.fillStyle='#7ab828';ctx.font='bold 15px Courier New';ctx.textAlign='center';
-  ctx.fillText('SETTINGS  &  CONTROLS',CW/2,py+22);
+  ctx.fillStyle='#7ab828';ctx.font='bold 17px Courier New';ctx.textAlign='center';
+  ctx.fillText('SETTINGS  &  CONTROLS',CW/2,py+23);
 
   let y=py+52;
   const L=px+22, R=CW/2+18;
-  const sh=(text,x,col,bold=false)=>{
-    ctx.fillStyle=col;ctx.font=(bold?'bold ':'')+`9px Courier New`;ctx.textAlign='left';
-    ctx.fillText(text,x,y);
-  };
 
   // ── CONTROLS ─────────────────────────────────
-  ctx.fillStyle='#4a6a2a';ctx.font='bold 10px Courier New';ctx.textAlign='left';
-  ctx.fillText('CONTROLS',L,y);y+=18;
+  ctx.fillStyle='#4a6a2a';ctx.font='bold 12px Courier New';ctx.textAlign='left';
+  ctx.fillText('CONTROLS',L,y);y+=20;
 
   // P1 header
-  ctx.fillStyle=PLAYER_COLORS[0];ctx.font='bold 9px Courier New';
+  ctx.fillStyle=PLAYER_COLORS[0];ctx.font='bold 10px Courier New';
   ctx.fillText('PLAYER 1',L,y);
-  ctx.fillStyle=PLAYER_COLORS[1];ctx.fillText('PLAYER 2',R,y);y+=14;
+  ctx.fillStyle=PLAYER_COLORS[1];ctx.fillText('PLAYER 2',R,y);y+=16;
 
   const ctrl=[
     ['Move','W  A  S  D','↑  ↓  ←  →'],
@@ -1149,27 +1147,27 @@ function drawSettingsOverlay(){
     ['Character','Q  /  E  to cycle','U  /  O  to cycle'],
   ];
   ctrl.forEach(([label,p1,p2])=>{
-    ctx.fillStyle='#446633';ctx.font='bold 8px Courier New';ctx.textAlign='left';ctx.fillText(label,L,y);
-    ctx.fillStyle='#8aaa66';ctx.font='8px Courier New';ctx.fillText(p1,L+56,y);ctx.fillText(p2,R+56,y);y+=13;
+    ctx.fillStyle='#446633';ctx.font='bold 10px Courier New';ctx.textAlign='left';ctx.fillText(label,L,y);
+    ctx.fillStyle='#8aaa66';ctx.font='10px Courier New';ctx.fillText(p1,L+64,y);ctx.fillText(p2,R+64,y);y+=15;
   });
   y+=4;
   // Shared controls
-  ctx.fillStyle='#446633';ctx.font='bold 8px Courier New';ctx.fillText('MAP',L,y);
-  ctx.fillStyle='#8aaa66';ctx.font='8px Courier New';ctx.fillText('[  ]  keys or click the arrows on menu',L+56,y);y+=13;
-  ctx.fillStyle='#446633';ctx.font='bold 8px Courier New';ctx.fillText('DIFFICULTY',L,y);
-  ctx.fillStyle='#8aaa66';ctx.font='8px Courier New';ctx.fillText('keys  1  2  3  4  or click buttons',L+56,y);y+=13;
-  ctx.fillStyle='#446633';ctx.font='bold 8px Courier New';ctx.fillText('START / RETRY',L,y);
-  ctx.fillStyle='#8aaa66';ctx.font='8px Courier New';ctx.fillText('SPACE',L+56,y);y+=13;
-  ctx.fillStyle='#446633';ctx.font='bold 8px Courier New';ctx.fillText('CLOSE MENU',L,y);
-  ctx.fillStyle='#8aaa66';ctx.font='8px Courier New';ctx.fillText('ESC  or click  ≡ MENU',L+56,y);y+=18;
+  ctx.fillStyle='#446633';ctx.font='bold 10px Courier New';ctx.fillText('MAP',L,y);
+  ctx.fillStyle='#8aaa66';ctx.font='10px Courier New';ctx.fillText('[  ]  keys or click the arrows on menu',L+64,y);y+=15;
+  ctx.fillStyle='#446633';ctx.font='bold 10px Courier New';ctx.fillText('DIFFICULTY',L,y);
+  ctx.fillStyle='#8aaa66';ctx.font='10px Courier New';ctx.fillText('keys  1  2  3  4  or click buttons',L+64,y);y+=15;
+  ctx.fillStyle='#446633';ctx.font='bold 10px Courier New';ctx.fillText('START / RETRY',L,y);
+  ctx.fillStyle='#8aaa66';ctx.font='10px Courier New';ctx.fillText('SPACE',L+64,y);y+=15;
+  ctx.fillStyle='#446633';ctx.font='bold 10px Courier New';ctx.fillText('CLOSE MENU',L,y);
+  ctx.fillStyle='#8aaa66';ctx.font='10px Courier New';ctx.fillText('ESC  or click  ≡ MENU',L+64,y);y+=20;
 
   // Divider
   ctx.strokeStyle='#2a3a18';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(px+16,y);ctx.lineTo(px+pw-16,y);ctx.stroke();y+=14;
+  ctx.beginPath();ctx.moveTo(px+16,y);ctx.lineTo(px+pw-16,y);ctx.stroke();y+=16;
 
   // ── ARENA ─────────────────────────────────────
-  ctx.fillStyle='#4a6a2a';ctx.font='bold 10px Courier New';ctx.textAlign='left';
-  ctx.fillText('ARENA',L,y);y+=14;
+  ctx.fillStyle='#4a6a2a';ctx.font='bold 12px Courier New';ctx.textAlign='left';
+  ctx.fillText('ARENA',L,y);y+=16;
   const arenaLines=[
     'Kill zombies to fill the unlock bar and open the Arena ring.',
     'Enter together to face the BOSS — each player has 1 extra',
@@ -1177,19 +1175,19 @@ function drawSettingsOverlay(){
     'the round and advance: difficulty scales +10% per round.',
   ];
   arenaLines.forEach(line=>{
-    ctx.fillStyle='#7a9a58';ctx.font='8px Courier New';ctx.textAlign='left';
-    ctx.fillText(line,L,y);y+=12;
+    ctx.fillStyle='#7a9a58';ctx.font='10px Courier New';ctx.textAlign='left';
+    ctx.fillText(line,L,y);y+=14;
   });
   y+=6;
 
   // Divider
   ctx.strokeStyle='#2a3a18';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(px+16,y);ctx.lineTo(px+pw-16,y);ctx.stroke();y+=14;
+  ctx.beginPath();ctx.moveTo(px+16,y);ctx.lineTo(px+pw-16,y);ctx.stroke();y+=16;
 
   // ── WEAPONS ────────────────────────────────────
-  ctx.fillStyle='#4a6a2a';ctx.font='bold 10px Courier New';ctx.textAlign='left';
+  ctx.fillStyle='#4a6a2a';ctx.font='bold 12px Courier New';ctx.textAlign='left';
   ctx.fillText('WEAPONS',L,y);
-  ctx.fillText('POWER-UPS',R,y);y+=14;
+  ctx.fillText('POWER-UPS',R,y);y+=16;
   const weps=[
     ['#f4c430','Pistol','12 shots, semi-auto'],
     ['#e87722','Shotgun','6 shots, 3-pellet spread'],
@@ -1204,25 +1202,25 @@ function drawSettingsOverlay(){
   for(let i=0;i<rows;i++){
     if(weps[i]){
       const[col,name,desc]=weps[i];
-      ctx.fillStyle=col;ctx.font='bold 8px Courier New';ctx.textAlign='left';ctx.fillText(name,L,y);
-      ctx.fillStyle='#7a9a58';ctx.font='8px Courier New';ctx.fillText(desc,L+50,y);
+      ctx.fillStyle=col;ctx.font='bold 10px Courier New';ctx.textAlign='left';ctx.fillText(name,L,y);
+      ctx.fillStyle='#7a9a58';ctx.font='10px Courier New';ctx.fillText(desc,L+54,y);
     }
     if(pups[i]){
       const[col,name,desc]=pups[i];
-      ctx.fillStyle=col;ctx.font='bold 8px Courier New';ctx.textAlign='left';ctx.fillText(name,R,y);
-      ctx.fillStyle='#7a9a58';ctx.font='8px Courier New';ctx.fillText(desc,R+52,y);
+      ctx.fillStyle=col;ctx.font='bold 10px Courier New';ctx.textAlign='left';ctx.fillText(name,R,y);
+      ctx.fillStyle='#7a9a58';ctx.font='10px Courier New';ctx.fillText(desc,R+56,y);
     }
-    y+=13;
+    y+=15;
   }
   y+=6;
 
   // Divider
   ctx.strokeStyle='#2a3a18';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(px+16,y);ctx.lineTo(px+pw-16,y);ctx.stroke();y+=14;
+  ctx.beginPath();ctx.moveTo(px+16,y);ctx.lineTo(px+pw-16,y);ctx.stroke();y+=16;
 
   // ── ZOMBIE TYPES ──────────────────────────────
-  ctx.fillStyle='#4a6a2a';ctx.font='bold 10px Courier New';ctx.textAlign='left';
-  ctx.fillText('ENEMY TYPES',L,y);y+=14;
+  ctx.fillStyle='#4a6a2a';ctx.font='bold 12px Courier New';ctx.textAlign='left';
+  ctx.fillText('ENEMY TYPES',L,y);y+=16;
   const ztypes=[
     ['#88cc44','WALKER','Balanced speed and sight'],
     ['#e63946','RUNNER','Fast, wide sight range'],
@@ -1231,31 +1229,45 @@ function drawSettingsOverlay(){
   ];
   const half=Math.ceil(ztypes.length/2);
   ztypes.forEach(([col,name,desc],i)=>{
-    const cx2=i<half?L:R,oy=i<half?0:-(half*13);
-    ctx.fillStyle=col;ctx.font='bold 8px Courier New';ctx.textAlign='left';ctx.fillText(name,cx2,y+oy+i%half*13);
-    ctx.fillStyle='#7a9a58';ctx.font='8px Courier New';ctx.fillText(desc,cx2+58,y+oy+i%half*13);
+    const cx2=i<half?L:R,oy=i<half?0:-(half*15);
+    ctx.fillStyle=col;ctx.font='bold 10px Courier New';ctx.textAlign='left';ctx.fillText(name,cx2,y+oy+i%half*15);
+    ctx.fillStyle='#7a9a58';ctx.font='10px Courier New';ctx.fillText(desc,cx2+62,y+oy+i%half*15);
   });
-  y+=half*13+8;
+  y+=half*15+10;
 
   // ── SOUND TOGGLE ──────────────────────────────
   const stbx=CW/2-75,stby=540,stbw=150,stbh=26;
   ctx.fillStyle=soundMuted?'rgba(30,10,10,0.9)':'rgba(10,30,10,0.9)';
   rrect(stbx,stby,stbw,stbh,5);ctx.fill();
   ctx.strokeStyle=soundMuted?'#7a2818':'#3a7818';ctx.lineWidth=1.5;ctx.stroke();
-  ctx.fillStyle=soundMuted?'#e07050':'#7ab828';ctx.font='bold 10px Courier New';ctx.textAlign='center';
+  ctx.fillStyle=soundMuted?'#e07050':'#7ab828';ctx.font='bold 11px Courier New';ctx.textAlign='center';
   ctx.fillText(soundMuted?'🔇  SOUND OFF':'🔊  SOUND ON',CW/2,stby+17);
-  ctx.fillStyle='#2a3a18';ctx.font='8px Courier New';
+  ctx.fillStyle='#2a3a18';ctx.font='10px Courier New';
   ctx.fillText('[M]  to  toggle',CW/2,stby+stbh+10);
 
-  // ── RETURN TO MENU ────────────────────────────
-  const rbx=CW/2-75,rby=580,rbw=150,rbh=26;
-  ctx.fillStyle='rgba(70,15,10,0.9)';rrect(rbx,rby,rbw,rbh,5);ctx.fill();
-  ctx.strokeStyle='#7a2818';ctx.lineWidth=1.5;ctx.stroke();
-  ctx.fillStyle='#e07050';ctx.font='bold 10px Courier New';ctx.textAlign='center';
-  ctx.fillText('RETURN TO MENU',CW/2,rby+17);
+  // ── RETURN TO GAME  +  RETURN TO MENU ─────────
+  const rby=580,rbh=26;
+  if(gameState!=='menu'){
+    const rtgx=CW/2-165,rtgw=150;
+    ctx.fillStyle='rgba(10,40,10,0.9)';rrect(rtgx,rby,rtgw,rbh,5);ctx.fill();
+    ctx.strokeStyle='#3a7818';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#7ab828';ctx.font='bold 11px Courier New';ctx.textAlign='center';
+    ctx.fillText('RETURN TO GAME',rtgx+rtgw/2,rby+17);
+    const rtmx=CW/2+15,rtmw=150;
+    ctx.fillStyle='rgba(70,15,10,0.9)';rrect(rtmx,rby,rtmw,rbh,5);ctx.fill();
+    ctx.strokeStyle='#7a2818';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#e07050';ctx.font='bold 11px Courier New';ctx.textAlign='center';
+    ctx.fillText('RETURN TO MENU',rtmx+rtmw/2,rby+17);
+  } else {
+    const rtmx=CW/2-75,rtmw=150;
+    ctx.fillStyle='rgba(70,15,10,0.9)';rrect(rtmx,rby,rtmw,rbh,5);ctx.fill();
+    ctx.strokeStyle='#7a2818';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#e07050';ctx.font='bold 11px Courier New';ctx.textAlign='center';
+    ctx.fillText('RETURN TO MENU',CW/2,rby+17);
+  }
 
   // Hint
-  ctx.fillStyle='#2e3e1e';ctx.font='8px Courier New';ctx.textAlign='center';
+  ctx.fillStyle='#2e3e1e';ctx.font='9px Courier New';ctx.textAlign='center';
   ctx.fillText('ESC  or  ≡ MENU  button  to  close',CW/2,py+ph-4);
 }
 
